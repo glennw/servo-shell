@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 80px 0 0 0;
+    overflow:hidden;
+    height: 100%;
+}
+
+ul {
+    list-style: none;
+    display: inline-block;
+}
+
+li {
+    display: inline-block;
+}
+
+#header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    position: fixed;
+}
+
+#header-tabstrip-container {
+    background: linear-gradient(to bottom, #ececec 0%,#d4d4d4 100%); /* W3C */
+    height: 40px;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+#header-control-container {
+    background: linear-gradient(to bottom, #ececec 0%,#d4d4d4 100%); /* W3C */
+    height: 40px;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.control-icon {
+    color: #afafaf;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 8px;
+}
+
+.control-icon:hover {
+    color: #666666;
+}
+
+#content {
+    height: 100%;
+    overflow: auto;
+}
+
+#header-url {
+    width: 60%;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid white;
+}
+
+.page-container {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#tab-container {
+    margin-top: 8px;
+}
+
+.tab {
+    font-size: 15px;
+    color: rgb(114, 114, 114);
+    padding: 8px;
+    width: 140px;
+    height: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.tab:hover {
+    background: linear-gradient(to bottom, #ffffff 0%,#ececec 100%);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.tab-active {
+    background: linear-gradient(to bottom, #ffffff 0%,#ececec 100%);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border: 1px solid rgb(170, 170, 170);
+    color: black;
+}
+
+.tab-favivon {
+    max-width: 16px;
+    max-height: 16px;
+}
+
+.tab-spinner {
+}
+
+.tab-close-icon {
+    color: rgb(132, 132, 132);
+    display: inline-block;
+    padding-left: 10px;
+}
+
+.tab-close-icon:hover {
+    color: rgb(182, 182, 182);
+}
+
+.tab-new {
+    width: 16px;
+}
+
+.tab-new-icon {
+    color: green;
+}
+
+.tab-text {
+    display: inline-block;
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-left: 4px;
+}
+
+#header-placeholder {
+    height: 8px;
+}
+
+.hidden {
+    display: none;
+}
