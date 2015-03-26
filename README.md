@@ -22,6 +22,6 @@ A proof of concept web browser interface for Servo, using the [mozbrowser](https
 ## How do I use it?
 
 * Clone and build [Servo](https://github.com/servo/servo#the-servo-parallel-browser-project).
-    * Make sure you build Servo in release mode - ./mach build --release - performance will be *much* better!
+    * Make sure you build Servo in release mode - `./mach build --release` - performance will be *much* better!
 * Clone this repo.
-* ./mach run --release ../servo-shell/index.html -e
+* `./mach run --release ../servo-shell/index.html -e`
