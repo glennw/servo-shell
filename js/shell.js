@@ -301,10 +301,16 @@ window.onload = function() {
         getActiveTab().back();
     }
 
+    onResize = function() {
+        getActiveTab().activate();
+    }
+
     getUrlBar = function() {
         return document.getElementById("header-url");
     }
 
     // Create initial tab
     createAndAddTab("about:blank");
+
+    window.addEventListener("resize", onResize);
 }
