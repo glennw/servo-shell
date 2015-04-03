@@ -131,6 +131,10 @@ li {
     color: green;
 }
 
+.tab-set {
+    width: 12px;
+}
+
 .tab-text {
     display: inline-block;
     width: 100px;
