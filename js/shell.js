@@ -101,7 +101,6 @@ window.onload = function() {
             // switch the tabs to the page that this tab is on
             for(var i in g_Tabs) {
                 if(g_Tabs[i] == this) {
-                    console.log("Found this tab");
                     cur_tab_set = Math.floor(i / calcMaxTabs());
                     break;
                 }
@@ -223,14 +222,10 @@ window.onload = function() {
         max_tabs = calcMaxTabs();
         i_min = cur_tab_set * max_tabs
         i_max = i_min + max_tabs;
-        console.log("updating UI "+i_min+" "+i_max);
         for(var i in g_Tabs) {
-            console.log("i: "+i);
             if(i < i_min || i >= i_max){
-                console.log("hiding "+i);
                 g_Tabs[i].hideLabel();
             } else {
-                console.log("showing "+i);
                 g_Tabs[i].showLabel();
             }
         }
