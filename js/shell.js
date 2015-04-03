@@ -98,6 +98,14 @@ window.onload = function() {
         this.activate = function() {
             this.label.classList.add("tab-active");
             this.iframe.classList.remove("hidden");
+            // switch the tabs to the page that this tab is on
+            for(var i in g_Tabs) {
+                if(g_Tabs[i] == this) {
+                    console.log("Found this tab");
+                    cur_tab_set = Math.floor(i / calcMaxTabs());
+                    break;
+                }
+            }
             updateUi();
         };
         this.deactivate = function() {
@@ -216,7 +224,7 @@ window.onload = function() {
         i_min = cur_tab_set * max_tabs
         i_max = i_min + max_tabs;
         console.log("updating UI "+i_min+" "+i_max);
-        for(i in g_Tabs) {
+        for(var i in g_Tabs) {
             console.log("i: "+i);
             if(i < i_min || i >= i_max){
                 console.log("hiding "+i);
