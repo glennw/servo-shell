@@ -1,5 +1,6 @@
 window.onload = function() {
     g_Tabs = []
+    cur_tab_set = 0;
 
     var Tab = function(url) {
         this.url = url;
@@ -97,12 +98,25 @@ window.onload = function() {
         this.activate = function() {
             this.label.classList.add("tab-active");
             this.iframe.classList.remove("hidden");
+            // switch the tabs to the page that this tab is on
+            for(var i in g_Tabs) {
+                if(g_Tabs[i] == this) {
+                    cur_tab_set = Math.floor(i / calcMaxTabs());
+                    break;
+                }
+            }
             updateUi();
         };
         this.deactivate = function() {
             this.iframe.classList.add("hidden");
             this.label.classList.remove("tab-active");
         };
+        this.hideLabel = function() {
+            this.label.classList.add("hidden");
+        }
+        this.showLabel = function() {
+            this.label.classList.remove("hidden");
+        }
         this.reload = function() {
             try {
                 this.iframe.reload();
@@ -187,6 +201,7 @@ window.onload = function() {
             var nextTab = g_Tabs[nextIndex];
             nextTab.activate();
         }
+        updateUi();
     }
 
     onNewTab = function() {
@@ -202,6 +217,61 @@ window.onload = function() {
         var tab = getActiveTab();
         getUrlBar().value = tab.url;
         document.title = tab.titleText.nodeValue;
+
+        // only show the label for tabs of the page we're on
+        max_tabs = calcMaxTabs();
+        i_min = cur_tab_set * max_tabs
+        i_max = i_min + max_tabs;
+        for(var i in g_Tabs) {
+            if(i < i_min || i >= i_max){
+                g_Tabs[i].hideLabel();
+            } else {
+                g_Tabs[i].showLabel();
+            }
+        }
+
+        // hide the previous button if we're on the first page
+        prev_btn =  document.getElementById("tab-set-prev");
+        if(cur_tab_set == 0) {
+            prev_btn.classList.add("hidden");
+        } else {
+            prev_btn.classList.remove("hidden");
+        }
+
+        // hide the next button if we're on the last page
+        next_btn = document.getElementById("tab-set-next");
+        if(i_max >= g_Tabs.length) {
+            next_btn.classList.add("hidden");
+        } else {
+            next_btn.classList.remove("hidden");
+        }
+    }
+
+    calcMaxTabs = function() {
+        // TODO: replace with document.width once it exists
+        windowWidth = document.getElementsByTagName("body")[0].getBoundingClientRect().width;
+        
+        // magic numbers, i know. this is supposed to be:
+        // width of the window, minus the width of the buttons that are always visible (new tab)
+        // divided by the width of an individual tab
+        return Math.floor((windowWidth - 80) / 158)
+    }
+
+    prevSet = function() {
+        if(cur_tab_set == 0) {
+            return
+        }
+        cur_tab_set--;
+        updateUi();
+    }
+
+    nextSet = function() {
+        max_tabs = calcMaxTabs();
+        if(g_Tabs.length / max_tabs < cur_tab_set + 1) {
+            return;
+        }
+        cur_tab_set++;
+        updateUi();
     }
 
     onReload = function() {
@@ -226,10 +296,16 @@ window.onload = function() {
         getActiveTab().back();
     }
 
+    onResize = function() {
+        getActiveTab().activate();
+    }
+
     getUrlBar = function() {
         return document.getElementById("header-url");
     }
 
     // Create initial tab
     createAndAddTab("about:blank");
+
+    window.addEventListener("resize", onResize);
 }
