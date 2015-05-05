@@ -117,6 +117,9 @@ window.onload = function() {
         this.showLabel = function() {
             this.label.classList.remove("hidden");
         }
+        this.getDisplayUrl = function() {
+          return this.url == "about:blank" ? "" : this.url;
+        }
         this.reload = function() {
             try {
                 this.iframe.reload();
@@ -215,7 +218,7 @@ window.onload = function() {
 
     updateUi = function() {
         var tab = getActiveTab();
-        getUrlBar().value = tab.url;
+        getUrlBar().value = tab.getDisplayUrl();
         document.title = tab.titleText.nodeValue;
 
         // only show the label for tabs of the page we're on
