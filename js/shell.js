@@ -61,7 +61,7 @@ window.onload = function() {
         iframe.classList.add("page-container");
 
         if (!iframe.mozbrowser) {
-            console.log("!!!!! Unable to create a mozbrowser frame - are you running with experimental (-e) mode enabled? !!!!!")
+            console.log("!!!!! Unable to create a mozbrowser frame - are you running with mozbrowser (--pref dom.mozbrowser.enabled) mode enabled? !!!!!")
             window.close();
         }
 
