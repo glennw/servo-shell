@@ -172,7 +172,7 @@ window.onload = function() {
         var tabContainer = document.getElementById("tab-container");
         tabContainer.insertBefore(tab.label, newTabButton);
 
-        if(is_private)
+        if (is_private)
             tab.makePrivate();
 
         return tab;
@@ -213,22 +213,13 @@ window.onload = function() {
         updateUi();
     }
 
-    onNewTab = function() {
+    onNewTab = function(is_private) {
         if (g_Tabs.length > 0) {
             var prevTab = getActiveTab();
             prevTab.deactivate();
         }
 
-        createAndAddTab("about:blank");
-    }
-
-    onNewPrivateTab = function() {
-        if (g_Tabs.length > 0) {
-            var prevTab = getActiveTab();
-            prevTab.deactivate();
-        }
-
-        createAndAddTab("about:blank", true);
+        createAndAddTab("about:blank", is_private);
     }
 
     updateUi = function() {
