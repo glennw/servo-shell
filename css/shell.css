@@ -131,6 +131,10 @@ li {
     color: green;
 }
 
+.tab-new-private-icon {
+    color: red;
+}
+
 .tab-set {
     width: 12px;
 }

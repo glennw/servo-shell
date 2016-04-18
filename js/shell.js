@@ -89,6 +89,9 @@ window.onload = function() {
         this.label = label;
         this.iframe = iframe;
 
+        this.makePrivate = function() {
+            this.iframe.mozprivatebrowsing = true;
+        }
         this.close = function() {
             removeTab(this);
         }
@@ -160,7 +163,7 @@ window.onload = function() {
         }
     }
 
-    createAndAddTab = function(url) {
+    createAndAddTab = function(url, is_private) {
         var tab = new Tab(url);
         g_Tabs.push(tab);
         tab.activate();
@@ -168,6 +171,9 @@ window.onload = function() {
         var newTabButton = document.getElementById("new-tab");
         var tabContainer = document.getElementById("tab-container");
         tabContainer.insertBefore(tab.label, newTabButton);
+
+        if(is_private)
+            tab.makePrivate();
 
         return tab;
     }
@@ -214,6 +220,15 @@ window.onload = function() {
         }
 
         createAndAddTab("about:blank");
+    }
+
+    onNewPrivateTab = function() {
+        if (g_Tabs.length > 0) {
+            var prevTab = getActiveTab();
+            prevTab.deactivate();
+        }
+
+        createAndAddTab("about:blank", true);
     }
 
     updateUi = function() {
